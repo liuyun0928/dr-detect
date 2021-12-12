@@ -3,6 +3,8 @@
 #include <string>
 #include <mlpack/core.hpp>
 
+using namespace std;
+
 class DiabeticRetinopathy {
 public:
     // image width pixes
@@ -11,6 +13,8 @@ public:
     static const int HEIGHT = 128;
     // image depth
     static const int DEPTH = 3;
+    // training labels file name
+    inline static const string TRAINING_LABEL_FILE = "trainLabels.csv";
 
 public:
     /**
@@ -19,7 +23,7 @@ public:
      * @param path 
      * @return int 
      */
-    int Train(std::string path);
+    int Train(string path);
 
 private: 
     /**
@@ -28,7 +32,7 @@ private:
      * @param label 
      * @return int 
      */
-    int convertLabelToLevel(std::string label);
+    int convertLabelToLevel(string label);
 
     /**
      * @brief convert level to human readable text
@@ -36,7 +40,7 @@ private:
      * @param level 
      * @return std::string 
      */
-    std::string convertLevelToClass(int level);
+    string convertLevelToClass(int level);
 
     /**
      * @brief read training data(meta data stored in csv file) from specified path 
@@ -44,7 +48,7 @@ private:
      * @param path 
      * @return int 
      */
-    int readTrainingMeta(std::string path);
+    int readTrainingMeta(string path);
 
     /**
      * @brief read training data(images) from specfied path
@@ -52,7 +56,7 @@ private:
      * @param path 
      * @return int 
      */
-    int readTrainingData(std::string path);
+    int readTrainingData(string path);
 
 private:
     arma::mat trainDataset;
