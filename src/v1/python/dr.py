@@ -21,9 +21,9 @@ from keras.models import Sequential
 from keras.layers import Dense, Conv2D, MaxPooling2D, Dropout, Flatten
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 from keras.optimizers import adam_v2
-from keras.utils import to_categorical, print_summary
 from keras.utils.vis_utils import model_to_dot
 from sklearn.model_selection import train_test_split
+from tensorflow.keras.utils import to_categorical
 
 from IPython.display import SVG
 
@@ -200,7 +200,7 @@ class DiabeticRetinopathyDetect:
         
         model = self.createModel()
 
-        print_summary(model, line_length=None, positions=None, print_fn=None)
+        model.summary()
         SVG(model_to_dot(model).create(prog='dot', format='svg'))
         
         aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1, height_shift_range=0.1, shear_range=0.2, zoom_range=0.2, horizontal_flip=True, fill_mode="nearest")
@@ -222,5 +222,5 @@ class DiabeticRetinopathyDetect:
         matplotlib.pyplot.savefig("plot.png")
 
 if __name__ == '__main__':
-    drd = DiabeticRetinopathyDetect("") 
+    drd = DiabeticRetinopathyDetect("/home/liuyun/data", "/home/liuyun/code/data/trainLabels.csv") 
     drd.process()
